@@ -1,4 +1,4 @@
-## Interface: 30300
+## Interface: 30403
 ## Title: chardumps
 ## Author: gracerpro/heyitsbench
 ## Version: 2.3
