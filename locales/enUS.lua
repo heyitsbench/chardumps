@@ -196,6 +196,7 @@ WoW/WTF/Account/%AccountName%/%RealmName%/%PlayerName%/SavedVariables/chardumps.
 
 L["Alterac Valley"] = "Alterac Valley"
 L.Ap = "Arena points"
+L["Battleground"] = "Battleground"
 L["Arathi Basin"] = "Arathi Basin"
 L["Eye of the Storm"] = "Eye of the Storm"
 L["Isle of Conquest"] = "Isle of Conquest"
