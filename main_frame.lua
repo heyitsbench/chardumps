@@ -78,7 +78,7 @@ function mainFrame:Init()
   str:SetPoint("CENTER", frame, 0, 0);
   str:SetPoint("TOP", frame, 0, -5);
   str:SetTextColor(1.0, 1.0, 0.0, 1.0);
-  local addonTitle = L.AddonName .. " " .. L.Version .. " - http://wowtransfer.com";
+  local addonTitle = L.AddonName .. " " .. L.Version;
   str:SetText(addonTitle);
 
 
@@ -613,7 +613,7 @@ function mainFrame:OnAddonLoaded(addonName)
   end
 
   local L = chardumps:GetLocale();
-  chardumps.log:Message(L.AddonName .. " " .. L.Version .. " - http://wowtransfer.com");
+  chardumps.log:Message(L.AddonName .. " " .. L.Version);
 end
 
 function mainFrame:OnPlayerLeavingWorld()
