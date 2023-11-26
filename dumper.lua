@@ -689,7 +689,7 @@ function dumper:GetPlayerData()
   res.gender           = UnitSex("player");
   local honorableKills = GetPVPLifetimeStats()
   res.kills            = honorableKills;
-  res.money            = math.floor(GetMoney() / 10000); -- convert to gold
+  res.money            = GetMoney(); -- convert to gold
   if type(GetNumTalentGroups) == "function" then
     res.specs            = GetNumTalentGroups();
   end
