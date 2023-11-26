@@ -19,7 +19,7 @@ end
 ---
 -- @return #string
 function chardumps:GetVersion()
-	return "2.2";
+	return "2.3";
 end
 
 ---
