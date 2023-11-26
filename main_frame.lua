@@ -470,10 +470,9 @@ function mainFrame:ApplyOptions()
     end
   end
   if not playerOptions.debug then
-    playerOptions.crypt = true;
+    playerOptions.crypt = false;
   end
   chardumps.options:SetDebug(playerOptions.debug);
-  self.chbCrypt:SetChecked(playerOptions.crypt);
   if playerOptions.minimize then
     self:OnMinimizeClick();
   end
