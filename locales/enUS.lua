@@ -4,7 +4,7 @@ local L = {};
 L["Press \"Dump\" button"] = "Press \"Dump\" button";
 
 L.AddonName       = "Chardumps"
-L.Version         = "2.2"
+L.Version         = "2.3"
 
 -- help
 L.help1 = "/chardumps or /chd -- console command"
