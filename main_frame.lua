@@ -25,7 +25,7 @@ local mainFrame = {
 
 function mainFrame:CreateEntityFrame(name, parent)
   local frameName = chardumps.widgets:genFrameName();
-  local frame = CreateFrame("ScrollingMessageFrame", frameName, parent);
+  local frame = CreateFrame("ScrollingMessageFrame", frameName, parent, "BackdropTemplate");
   frame:ClearAllPoints();
   frame:SetPoint("TOPRIGHT", -10, -self.dataFrame.defaultTop);
   frame:SetWidth(self.dataFrame.defaultWidth);
@@ -45,7 +45,7 @@ function mainFrame:RegisterWorkEvents(frame)
   local events = {
     "TAXIMAP_OPENED", "VARIABLES_LOADED", "BANKFRAME_OPENED", "PLAYER_LEAVING_WORLD",
     "TRADE_SKILL_SHOW", "QUEST_DETAIL", "QUEST_PROGRESS",
-    "QUEST_QUERY_COMPLETE", "ADDON_LOADED", "PLAYER_LOGOUT", -- UNIT_QUEST_LOG_CHANGED
+    "ADDON_LOADED", "PLAYER_LOGOUT", -- UNIT_QUEST_LOG_CHANGED
     "QUEST_TURNED_IN",
   }
   frame:UnregisterAllEvents();
@@ -57,7 +57,7 @@ end
 function mainFrame:Init()
   local L = chardumps:GetLocale();
   local widgets = chardumps.widgets;
-  local frame = CreateFrame("Frame", widgets:GetFrameName("frmMain"), UIParent);
+  local frame = CreateFrame("Frame", widgets:GetFrameName("frmMain"), UIParent, "BackdropTemplate");
 
   frame:EnableMouse(true);
   frame:SetMovable(true);
@@ -71,8 +71,6 @@ function mainFrame:Init()
   frame:SetBackdrop(chardumps.widgets:GetBackdrop());
   frame:SetFrameStrata("DIALOG");
   frame:Show();
-  local titleRegion = frame:CreateTitleRegion();
-  titleRegion:SetAllPoints();
 
   local str = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal");
   str:SetPoint("CENTER", frame, 0, 0);
