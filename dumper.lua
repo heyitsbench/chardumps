@@ -383,9 +383,13 @@ function dumper:GetCritterData()
   local res = {};
 
   chardumps.log:Message(L.GetCritter);
-  for i = 1, GetNumCompanions("CRITTER") do
-    local _, _, spellID = GetCompanionInfo("CRITTER", i);
-    res[i] = spellID;
+  for i = 1, C_PetJournal.GetNumPets() do
+    local _, speciesID, owned = C_PetJournal.GetPetInfoByIndex(i);
+    if owned == true then
+      res[i] = speciesID;
+    else
+      break;
+    end
   end
   table.sort(res);
 
@@ -643,9 +647,12 @@ function dumper:GetMountData()
 
   chardumps.log:Message(L.GetMount);
 
-  for i = 1, GetNumCompanions("MOUNT") do
-    local _, _, spellID = GetCompanionInfo("MOUNT", i);
-    res[i] = spellID;
+  local mountIDs = C_MountJournal.GetMountIDs();
+  for i = 1, #mountIDs do
+    local _, spellID, _, _, _, _, _, _, _, _, isCollected = C_MountJournal.GetMountInfoByID(i);
+    if isCollected == true then
+      res[i] = spellID;
+    end
   end
   table.sort(res);
 
