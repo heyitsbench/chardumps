@@ -216,9 +216,9 @@ function dumper:GetBagData()
   for bag = 1, NUM_BAG_SLOTS do
     local nCount = 0;
     local tmpBag = {};
-    for slot = 1, GetContainerNumSlots(bag) do
-      local itemLink = GetContainerItemLink(bag, slot);
-      local _, count = GetContainerItemInfo(bag, slot);
+    for slot = 1, C_Container.GetContainerNumSlots(bag) do
+      local itemLink = C_Container.GetContainerItemLink(bag, slot);
+      local _, count = C_Container.GetContainerItemInfo(bag, slot);
 
       if itemLink and count then
         local tmpItem = {};
@@ -294,7 +294,7 @@ function dumper:GetBankData()
     res[j] = {};
     local bag = res[j];
     itemCount = 0;
-    for slot = 1, GetContainerNumSlots(i) do
+    for slot = 1, C_Container.GetContainerNumSlots(i) do
       local itemLink = GetContainerItemLink(i, slot)
       if itemLink then
         local _, count = GetContainerItemInfo(i, slot);
@@ -544,7 +544,7 @@ function dumper:GetEquipmentData()
   local equip;
 
   chardumps.log:Message(L.GetEquipment);
-  for i = 1, GetNumEquipmentSets() do
+  for i = 1, C_EquipmentSet.GetNumEquipmentSets() do
     local name, icon = GetEquipmentSetInfo(i);
     if name then
       equip = {};
@@ -592,10 +592,10 @@ function dumper:GetInventoryData()
   end
 
   local container = 0;
-  for slot = 1, GetContainerNumSlots(container) do
-    local itemLink = GetContainerItemLink(container, slot);
+  for slot = 1, C_Container.GetContainerNumSlots(container) do
+    local itemLink = C_Container.GetContainerItemLink(container, slot);
     if itemLink then
-      local _, itemCount = GetContainerItemInfo(container, slot);
+      local _, itemCount = C_Container.GetContainerItemInfo(container, slot);
       for id, enchant, gem1, gem2, gem3 in string.gmatch(itemLink, ".-Hitem:(%d+):(%d+):(%d+):(%d+):(%d+)") do 
         local tmpItem = {
           ["I"] = tonumber(id)
@@ -614,11 +614,11 @@ function dumper:GetInventoryData()
 
   container = -2;
   index = 86;
-  for slot = 1, GetContainerNumSlots(container) do
-    local itemLink = GetContainerItemLink(container, slot);
+  for slot = 1, C_Container.GetContainerNumSlots(container) do
+    local itemLink = C_Container.GetContainerItemLink(container, slot);
     if itemLink then
-      local id = GetContainerItemID(container, slot);
-      local _, itemCount = GetContainerItemInfo(container, slot);
+      local id = C_Container.GetContainerItemID(container, slot);
+      local _, itemCount = C_Container.GetContainerItemInfo(container, slot);
       local tmpItem = {
         ["I"] = tonumber(id)
       };
@@ -697,7 +697,7 @@ function dumper:GetPlayerData()
     res.active_spec = GetActiveSpecGroup();
   end
   res.health           = UnitHealth("player");
-  res.mana             = UnitMana("player");
+  res.mana             = UnitPower("player", 0);
   res.honor            = pvpCurrency.honor;
   res.ap               = pvpCurrency.ap;
   res.cp               = pvpCurrency.cp;
