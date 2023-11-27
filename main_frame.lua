@@ -81,7 +81,7 @@ function mainFrame:Init()
 
 
   local btnW = widgets.btnWidth;
-  local frameMin = CreateFrame("Frame", widgets:GetFrameName("minFrame", frame:GetName()), frame);
+  local frameMin = CreateFrame("Frame", widgets:GetFrameName("minFrame", frame:GetName()), frame, "BackdropTemplate");
   frameMin:ClearAllPoints();
   frameMin:SetPoint("TOPRIGHT", frame, 0, 0);
   frameMin:SetWidth(5 + 5 + btnW*3 + 3*3 + 5);
