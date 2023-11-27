@@ -131,7 +131,7 @@ function dumper:GetAchievementData()
   local id, name, points, completed, month, day, year, description, flags, icon, rewardText, isGuildAch;
   local posixtime;
 
-  for i = 1, 10000 do -- TODO: maximum value
+  for i = 1, 4824 do
     status, id, _ --[[name]], _, completed, month, day, year, _ --[[description]], _, _, _, isGuildAch = pcall(GetAchievementInfo, i);
 
     if status then
