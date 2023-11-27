@@ -170,21 +170,17 @@ function dumper:GetActionData()
   -- "equipmentset", "flyout"
   local arrType = {};
   arrType.companion = 0;
-  arrType.item = 128;
-  arrType.macro = 64;
   arrType.spell = 0;
+  arrType.macro = 64;
+  arrType.item = 128;
 
   chardumps.log:Message(L.GetAction);
   for i = 1, 120 do -- (6 + 4) panels * 12 buttons
-    local t, id, subType, spellID = GetActionInfo(i);
-    if t and arrType[t] then
+    local actionType, id, subType = GetActionInfo(i);
+    if actionType and arrType[actionType] then
       local item = {};
-      item.T = arrType[t];
-      if t == "spell" or t == "companion" then
-        item.I = spellID;
-      else -- item and macro
-        item.I = id;
-      end
+      item.T = arrType[actionType];
+      item.I = id;
       res[i] = item;
     end
   end
