@@ -585,6 +585,7 @@ function mainFrame:OnTaximapOpened()
 
   --]]
   local continent = -1;
+  local map = C_Map.GetMapInfo(C_Map.GetBestMapForUnit("player"))
   local parent = C_Map.GetMapInfo(map.parentMapID)
   if parent.name == "Kalimdor" then
     continent = 1
