@@ -584,7 +584,17 @@ function mainFrame:OnTaximapOpened()
   6 - Pandaria
 
   --]]
-  local continent = GetCurrentMapContinent();
+  local continent = -1;
+  local parent = C_Map.GetMapInfo(map.parentMapID)
+  if parent.name == "Kalimdor" then
+    continent = 1
+  elseif parent.name == "Eastern Kingdoms" then
+    continent = 2
+  elseif parent.name == "Outland" then
+    continent = 3
+  elseif parent.name == "Northrend" then
+    continent = 4
+  end
   if (continent < 1) or (continent > chardumps.MAX_NUM_CONTINENT) then
     return
   end
