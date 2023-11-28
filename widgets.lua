@@ -160,11 +160,6 @@ local function CreateMessageBox()
     end
   end);
 
-  dialog.Title = dialog:CreateFontString(nil, "OVERLAY", "GameFontNormal");
-  dialog.Title:SetPoint("TOPLEFT", dialog, "TOPLEFT", 6, -10);
-  dialog.Title:SetTextColor(1.0,1.0,0.0,1.0);
-  dialog.Title:SetText("null");
-
   dialog.Text = dialog:CreateFontString(nil, "OVERLAY", "GameFontNormal");
   dialog.Text:SetPoint("CENTER",dialog,"CENTER",0,0);
   dialog.Text:SetTextColor(1.0,1.0,1.0);
@@ -189,10 +184,6 @@ local function CreateMessageBox()
   dialog.NoButton:SetScript("OnClick", function() dialog:Hide() end);
   dialog.NoButton:SetText(L.No);
 
-  dialog.SetTitle = function(title)
-    dialog.Title:SetText(title);
-  end
-
   return dialog;
 end
 
@@ -202,7 +193,6 @@ function widgets:ShowMessageBox(title, onOk)
   if self.messageBox == nil then
     self.messageBox = CreateMessageBox();
   end
-  self.messageBox:SetTitle(title);
   self.messageBox.onOk = onOk;
   self.messageBox:Show();
 end
