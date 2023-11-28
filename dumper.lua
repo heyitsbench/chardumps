@@ -708,6 +708,7 @@ function dumper:GetPlayerData()
   res.honor            = pvpCurrency.honor;
   res.ap               = pvpCurrency.ap;
   res.cp               = pvpCurrency.cp;
+  res.hearth           = GetBindLocation();
 
   return res;
 end
