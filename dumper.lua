@@ -214,7 +214,8 @@ function dumper:GetBagData()
     local tmpBag = {};
     for slot = 1, C_Container.GetContainerNumSlots(bag) do
       local itemLink = C_Container.GetContainerItemLink(bag, slot);
-      local _, count = C_Container.GetContainerItemInfo(bag, slot);
+      local info = C_Container.GetContainerItemInfo(bag, slot);
+      if info then local count = info.stackCount; end
 
       if itemLink and count then
         local tmpItem = {};
@@ -293,7 +294,8 @@ function dumper:GetBankData()
     for slot = 1, C_Container.GetContainerNumSlots(i) do
       local itemLink = GetContainerItemLink(i, slot)
       if itemLink then
-        local _, count = GetContainerItemInfo(i, slot);
+        local info = C_Container.GetContainerItemInfo(i, slot);
+        local count = info.stackCount;
         for id, enchant, gem1, gem2, gem3 in string.gmatch(itemLink, ".-Hitem:(%d+):(%d+):(%d+):(%d+):(%d+)") do
           local tmpItem = {
             ["I"] = tonumber(id)
@@ -544,11 +546,11 @@ function dumper:GetEquipmentData()
   local equip;
 
   chardumps.log:Message(L.GetEquipment);
-  for i = 1, C_EquipmentSet.GetNumEquipmentSets() do
-    local name, icon = GetEquipmentSetInfo(i);
+  for i = 0, C_EquipmentSet.GetNumEquipmentSets() do
+    local name, icon = C_EquipmentSet.GetEquipmentSetInfo(i);
     if name then
       equip = {};
-      equip["items"] = GetEquipmentSetItemIDs(name); -- return table 1..19
+      equip["items"] = C_EquipmentSet.GetItemIDs(i); -- return table 1..19
       equip["name"] = name;
       res[i] = equip;
     end
@@ -595,7 +597,8 @@ function dumper:GetInventoryData()
   for slot = 1, C_Container.GetContainerNumSlots(container) do
     local itemLink = C_Container.GetContainerItemLink(container, slot);
     if itemLink then
-      local _, itemCount = C_Container.GetContainerItemInfo(container, slot);
+      local info = C_Container.GetContainerItemInfo(container, slot);
+      local itemCount = info.stackCount;
       for id, enchant, gem1, gem2, gem3 in string.gmatch(itemLink, ".-Hitem:(%d+):(%d+):(%d+):(%d+):(%d+)") do 
         local tmpItem = {
           ["I"] = tonumber(id)
@@ -618,7 +621,8 @@ function dumper:GetInventoryData()
     local itemLink = C_Container.GetContainerItemLink(container, slot);
     if itemLink then
       local id = C_Container.GetContainerItemID(container, slot);
-      local _, itemCount = C_Container.GetContainerItemInfo(container, slot);
+      local info = C_Container.GetContainerItemInfo(container, slot);
+      local itemCount = info.stackCount;
       local tmpItem = {
         ["I"] = tonumber(id)
       };
