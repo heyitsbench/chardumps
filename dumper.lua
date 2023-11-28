@@ -292,7 +292,7 @@ function dumper:GetBankData()
     local bag = res[j];
     itemCount = 0;
     for slot = 1, C_Container.GetContainerNumSlots(i) do
-      local itemLink = GetContainerItemLink(i, slot)
+      local itemLink = C_Container.GetContainerItemLink(i, slot)
       if itemLink then
         local info = C_Container.GetContainerItemInfo(i, slot);
         local count = info.stackCount;
