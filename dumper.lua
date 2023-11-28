@@ -778,13 +778,13 @@ function dumper:GetQuestlogData()
   chardumps.log:Message(L.GetQuestlog);
   local j = 1;
   for i = 1, numEntries do
-    local _, _, _, _, isHeader, isCollapsed, isComplete, isDaily, questID = GetQuestLogTitle(i);
+    local _, _, _, isHeader, isCollapsed, isComplete, frequency, questID = GetQuestLogTitle(i);
     local link, _, charges = GetQuestLogSpecialItemInfo(i);
     -- - 1 - The quest was failed
     --   1 - The quest was completed
     -- nil - The quest has yet to reach a conclusion
     -- questID, isComplete, itemID
-    if isHeader == nil then
+    if isHeader ~= true then
       if isComplete ~= 1 then
         isComplete = 0;
       end
