@@ -211,11 +211,13 @@ function mainFrame:CreateEntityWidgets(frame)
     local font = entityFrame:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge");
     font:SetPoint("TOPLEFT", 50, -5);
     font:SetText(L[name]);
+    font:SetTextColor(1, 1, 1);
 
     local pressDumpButtonWarning = entityFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal");
     pressDumpButtonWarning:SetPoint("TOPLEFT", 10, -30);
     pressDumpButtonWarning:SetText(L["Press \"Dump\" button"]);
     pressDumpButtonWarning:SetTextColor(chardumps.config:GetWarningColor());
+    entityFrame:SetTextColor(1, 1, 1);
     data.pressDumpBtnText = pressDumpButtonWarning;
   end
 
