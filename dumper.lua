@@ -719,21 +719,29 @@ function dumper:GetPlayerData()
 end
 
 function dumper:GetPetData()
+  local L = chardumps:GetLocale();
 
+  chardumps.log:Message(L.GetPet);
 end
 
 function dumper:GetPMacroData()
-  local L = chardumps:GetLocale();
   local res = {};
+  local L = chardumps:GetLocale();
 
-  chardumps.log:Message(L.GetMacro);
+  chardumps.log:Message(L.GetPMacro);
   local count = 1;
-  local _, numCharacterMacros = GetNumMacros();
+  local globalMacros, individualMacros = GetNumMacros();
   local nIconPos = string.len("Interface\\Icons\\") + 1;
-  for i = 36 + 1, 36 + numCharacterMacros do
+  for i = 1, globalMacros do
     local name, texture, body = GetMacroInfo(i);
     texture = string.sub(texture, nIconPos);
-    res[count] = {["N"] = name, ["T"] = texture, ["B"] = body};
+    res[count] = {["N"] = name, ["T"] = texture, ["B"] = body, ["S"] = "Global"};
+    count = count + 1;
+  end
+  for i = 120 + 1, 120 + individualMacros do
+    local name, texture, body = GetMacroInfo(i);
+    texture = string.sub(texture, nIconPos);
+    res[count] = {["N"] = name, ["T"] = texture, ["B"] = body, ["S"] = "Individual"};
     count = count + 1;
   end
 
@@ -1101,7 +1109,7 @@ function dumper:GetCounts(dump)
   res.questlog = #dump.questlog;
   res.pet = 0;
   res.player = chardumps:GetTableLength(dump.player);
-  res.pmacro = #dump.pmacro;
+  res.pmacro = self:GetPMacroData();
   res.reputation = #dump.reputation;
   res.mount = #dump.mount;
   res.talent = self:GetTalentItemsCount();

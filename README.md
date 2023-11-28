@@ -16,7 +16,7 @@ The addon can to save:
 - Currency
 - Glyphs
 - Inventory (equipped items, equipped bags, main backpack, main bank, bank bags and keys in the keyring)
-- Player macroses
+- Player macros
 - Mounts
 - Quests
 - Quest log
