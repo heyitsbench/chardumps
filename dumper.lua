@@ -855,6 +855,9 @@ function dumper:GetSkillData()
       table.insert(res, {["N"] = skillName, ["R"] = skillRank, ["M"] = skillMaxRank});
     end
   end
+  if IsUsableSpell(15590) then -- fist weapons hack
+    table.insert(res, {["N"] = "Fist Weapons", ["R"] = 1, ["M"] = 1});
+  end
   table.sort(res, function(e1, e2) return e1.N < e2.N end);
 
   return res;
