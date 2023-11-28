@@ -684,6 +684,8 @@ function dumper:GetPlayerData()
   local res  = {};
   local L = chardumps:GetLocale();
   local pvpCurrency = dumper:GetPvpCurrency();
+  local currentMap = C_Map.GetBestMapForUnit("player");
+  local currentPosition = C_Map.GetPlayerMapPosition(currentMap, "player");
 
   chardumps.log:Message(L.GetPlayer);
 
@@ -709,6 +711,9 @@ function dumper:GetPlayerData()
   res.ap               = pvpCurrency.ap;
   res.cp               = pvpCurrency.cp;
   res.hearth           = GetBindLocation();
+  res.map              = currentMap;
+  res.position         = currentPosition;
+  res.orientation      = GetPlayerFacing();
 
   return res;
 end
