@@ -981,7 +981,7 @@ function dumper:GetTitleData()
 
   chardumps.log:Message(L.GetTitles);
   for i = 1, GetNumTitles() do
-    if IsTitleKnown(i) == 1 then
+    if IsTitleKnown(i) == true then
       table.insert(res, i);
     end
   end
