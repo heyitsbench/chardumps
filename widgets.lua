@@ -122,7 +122,7 @@ end
 
 local function CreateMessageBox()
   local L = chardumps:GetLocale();
-  local dialog = CreateFrame("Frame", nil, UIParent);
+  local dialog = CreateFrame("Frame", nil, UIParent, "BackdropTemplate");
 
   dialog:ClearAllPoints();
   dialog:SetPoint("CENTER", UIParent);
